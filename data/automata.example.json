@@ -1,0 +1,24 @@
+{
+  "_how_to_use": "Copie este arquivo, remova as chaves que comecam com underscore (opcional) e edite os valores para descrever o seu proprio AFD.",
+
+  "name": "even_number_of_zeros",
+  "_name": "Texto livre. Serve apenas para identificar o automato.",
+
+  "alphabet": ["0", "1"],
+  "_alphabet": "Lista dos simbolos de entrada validos. Cada simbolo é um unico caractere. Qualquer outro simbolo em uma palavra a torna invalida.",
+
+  "states": ["q0", "q1"],
+  "_states": "Lista com o nome de todos os estados. Os nomes devem ser unicos. Eles sao os identificadores usados nos campos abaixo.",
+
+  "initial_state": "q0",
+  "_initial_state": "Estado onde a leitura comeca. Deve ser um dos nomes de 'states'.",
+
+  "final_states": ["q0"],
+  "_final_states": "Lista dos estados de aceitacao. Uma palavra e aceita se a leitura terminar em um deles. Deve conter apenas nomes de 'states'.",
+
+  "transitions": {
+    "q0": { "0": "q1", "1": "q0" },
+    "q1": { "0": "q0", "1": "q1" }
+  },
+  "_transitions": "Formato: estado -> simbolo -> proximo estado. No exemplo, estando em q0 e lendo '0', vai para q1. Todo estado deve ter uma entrada para cada simbolo do alfabeto (um AFD e completo e tem exatamente um destino por simbolo)."
+}

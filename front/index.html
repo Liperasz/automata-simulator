@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de AFD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <h1>Simulador de AFD</h1>
+      <p id="name"></p>
+    </div>
+    <ul class="facts" id="facts"></ul>
+  </header>
+
+  <div class="fail" id="fail" hidden></div>
+
+  <main class="layout" id="app" hidden>
+    <section class="stage">
+      <div class="tape" id="tape" aria-live="polite"></div>
+
+      <div class="board">
+        <svg id="graph" viewBox="0 0 900 660" role="img" aria-label="Diagrama de estados"></svg>
+      </div>
+
+      <div class="status">
+        <span class="counter" id="counter"></span>
+        <p id="sentence"></p>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="reset" type="button">Reiniciar</button>
+        <button class="btn" id="prev" type="button">Voltar</button>
+        <button class="btn main" id="play" type="button">Executar</button>
+        <button class="btn" id="next" type="button">Avançar</button>
+        <div class="speed" id="speed" role="group" aria-label="Velocidade">
+          <button type="button" data-speed="slow">Lenta</button>
+          <button type="button" data-speed="normal" class="on">Normal</button>
+          <button type="button" data-speed="fast">Rápida</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="result idle" id="result"></div>
+
+      <div class="panel">
+        <h2>Palavras</h2>
+        <ul class="words" id="words"></ul>
+        <form class="add" id="form" autocomplete="off">
+          <input id="custom" type="text" placeholder="Digite uma palavra" aria-label="Palavra para testar" spellcheck="false">
+          <button class="btn small" type="submit">Testar</button>
+        </form>
+      </div>
+
+      <p class="keys">Atalhos: setas para passar, espaço para executar, R para reiniciar.</p>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

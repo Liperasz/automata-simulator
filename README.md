@@ -7,15 +7,19 @@ O projeto foi feito como trabalho acadêmico: construir o AFD equivalente a um A
 ## Status
 
 * Núcleo do simulador (leitura, validação e simulação): pronto.
-* Interface gráfica com diagrama de estados e execução passo a passo: em desenvolvimento.
+* Interface web com diagrama de estados e execução passo a passo: pronta.
 
 ## Estrutura
 
 ```
-dfa-simulator/
-├── README.md
+automata-simulator/
 ├── automata.py
-├── test_automata.py
+├── api.py
+├── requirements.txt
+├── front/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
 └── data/
     ├── automata.json
     ├── automata.example.json
@@ -25,14 +29,41 @@ dfa-simulator/
 | Arquivo | Descrição |
 |---|---|
 | `automata.py` | Classe `Automata`: carrega, valida e simula o autômato |
-| `test_automata.py` | Script de teste manual, que imprime os resultados |
+| `api.py` | Servidor Flask. Expõe as rotas que o front usa |
+| `front/` | Interface web: desenha o diagrama e anima a execução |
 | `data/automata.json` | Autômato usado no trabalho |
 | `data/automata.example.json` | Exemplo comentado, para criar o seu próprio autômato |
 | `data/input.txt` | Palavras para testar no autômato |
 
 ## Requisitos
 
-Python 3. Não há dependências externas.
+* Python 3.
+* Flask, única dependência, listada em `requirements.txt`.
+
+## Como executar
+
+```
+pip install -r requirements.txt
+python api.py
+```
+
+Abra `http://127.0.0.1:8000` no navegador.
+
+Para usar outro autômato, passe o caminho do JSON como argumento:
+
+```
+python api.py data/automata.example.json
+```
+
+## Fluxo de execução
+
+* `api.py` carrega e valida o autômato uma única vez, na inicialização.
+* O navegador pede `front/index.html`, que carrega `style.css` e `app.js`.
+* O front busca a definição do autômato em `GET /api/automaton` e desenha o diagrama de estados.
+* O front busca as palavras em `GET /api/words`, que lê `data/input.txt` (uma palavra por linha).
+* Cada palavra é simulada via `POST /api/run`, que devolve o resultado de `run()` e alimenta a animação passo a passo.
+
+O front não simula o autômato nem lê o JSON diretamente. Ele só chama as rotas da API e desenha o que recebe.
 
 ## Autômato incluído
 

@@ -212,6 +212,3 @@ class Automata:
             "final_states": list(self._final_states),
             "transitions": {state: dict(moves) for state, moves in self._transitions.items()},
         }
-
-automata = Automata()
-automata.get_automata('automata.json')
